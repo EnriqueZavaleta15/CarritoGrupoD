@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-12-2021 a las 05:12:56
+-- Tiempo de generación: 15-12-2021 a las 00:07:36
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 8.0.0
 
@@ -59,6 +59,29 @@ INSERT INTO `categorias` (`id`, `nombre`, `descripcion`, `imagen`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `envios`
+--
+
+CREATE TABLE `envios` (
+  `id_envio` int(11) NOT NULL,
+  `pais` varchar(50) NOT NULL,
+  `company` varchar(50) NOT NULL,
+  `direccion` varchar(200) NOT NULL,
+  `estado` varchar(50) NOT NULL,
+  `codigoPostal` varchar(20) NOT NULL,
+  `id_venta` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `envios`
+--
+
+INSERT INTO `envios` (`id_envio`, `pais`, `company`, `direccion`, `estado`, `codigoPostal`, `id_venta`) VALUES
+(1, '5', 'ewew', 'wewewe', 'wewe', 'wewe', 10);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `productos`
 --
 
@@ -97,6 +120,20 @@ CREATE TABLE `productos_venta` (
   `subtotal` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `productos_venta`
+--
+
+INSERT INTO `productos_venta` (`id`, `id_venta`, `id_producto`, `cantidad`, `precio`, `subtotal`) VALUES
+(1, 5, 9, 2, 78, 156),
+(2, 6, 10, 1, 40, 40),
+(3, 7, 10, 1, 40, 40),
+(4, 8, 10, 1, 40, 40),
+(5, 9, 10, 1, 40, 40),
+(6, 9, 11, 1, 25, 25),
+(7, 10, 10, 1, 40, 40),
+(8, 10, 11, 1, 25, 25);
+
 -- --------------------------------------------------------
 
 --
@@ -119,12 +156,12 @@ CREATE TABLE `ropa` (
 --
 
 INSERT INTO `ropa` (`idRopa`, `Nom_Ropa`, `Descrip_Rop`, `TallaRopa`, `ColorRopa`, `CategoriaRopa`, `imgRopa`, `ropa_precio`) VALUES
-(7, 'Sueter LaCoste', 'Suerte bueno', 'S', 'Rojo', 'Deportiva', 'suerterLacoste.jpg', 90),
-(8, 'Polo Lacoste', 'sssss', 'M', 'Rojo', 'Deportiva', 'polorojo.jpg', 70),
+(7, 'Sueter LaCoste', 'Suerte bueno', 'S', 'Gris', 'Deportiva', 'suerterLacoste.jpg', 90),
+(8, 'Polo Lacoste', 'Polos Comodo y ligero', 'M', 'Rojo', 'Deportiva', 'polorojo.jpg', 70),
 (9, 'Pantalon Lacoste', 'Hecho con lana', 'S', 'Azul', 'Casual', 'pantalLacoste.jpg', 78),
 (10, 'Gorra Lacoste', 'a', 'S', 'Gris', 'Casual', 'gorraLacoste.jpg', 40),
-(11, 'Falda', 'w', 'S', 'Blanco', 'Casual', 'faldaLacoste.jpg', 25),
-(12, 'Chompa', 'a', 'S', 'Negro', 'Casual', 'chompaLacoste.png', 65);
+(11, 'Falda', '', 'S', 'Blanco', 'Casual', 'faldaLacoste.jpg', 25),
+(12, 'Chompa', 'Comodidad y elegancia', 'S', 'Negro', 'Casual', 'chompaLacoste.png', 65);
 
 -- --------------------------------------------------------
 
@@ -142,6 +179,17 @@ CREATE TABLE `usuario` (
   `nivel` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`id`, `nombre`, `telefono`, `email`, `password`, `img_perfil`, `nivel`) VALUES
+(1, 'qqe ee2', '23232', '32323@gmail.com', '600adc5fc96b099347c4882aa7401ebfcb6b0d62', '', ''),
+(2, 'qqe ee2', '23232', '32323@gmail.com', '600adc5fc96b099347c4882aa7401ebfcb6b0d62', '', ''),
+(3, 'qqe ee2', '23232', '32323@gmail.com', '600adc5fc96b099347c4882aa7401ebfcb6b0d62', '', ''),
+(4, 'qqe ewewew', '323232323', 'sssssssss@gmail.com', 'd4c4e4ccefa3e890b175591ad56d5f2f26767b7f', '', ''),
+(5, 'qqe ewewew', '323232323', 'sssssssss@gmail.com', 'd4c4e4ccefa3e890b175591ad56d5f2f26767b7f', '', '');
+
 -- --------------------------------------------------------
 
 --
@@ -154,6 +202,22 @@ CREATE TABLE `ventas` (
   `total` double NOT NULL,
   `fecha` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `ventas`
+--
+
+INSERT INTO `ventas` (`id`, `id_usuario`, `total`, `fecha`) VALUES
+(1, 1, 130, '2021-12-14 11:12:38'),
+(2, 1, 40, '2021-12-14 12:12:52'),
+(3, 1, 156, '2021-12-14 13:12:33'),
+(4, 1, 156, '2021-12-14 13:12:33'),
+(5, 1, 156, '2021-12-14 13:12:01'),
+(6, 0, 40, '2021-12-14 16:12:29'),
+(7, 0, 40, '2021-12-14 16:12:34'),
+(8, 0, 40, '2021-12-14 16:12:13'),
+(9, 0, 65, '2021-12-14 16:12:18'),
+(10, 0, 65, '2021-12-14 16:12:26');
 
 --
 -- Índices para tablas volcadas
@@ -170,6 +234,12 @@ ALTER TABLE `carrito`
 --
 ALTER TABLE `categorias`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `envios`
+--
+ALTER TABLE `envios`
+  ADD PRIMARY KEY (`id_envio`);
 
 --
 -- Indices de la tabla `productos`
@@ -218,6 +288,12 @@ ALTER TABLE `categorias`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT de la tabla `envios`
+--
+ALTER TABLE `envios`
+  MODIFY `id_envio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
@@ -227,7 +303,7 @@ ALTER TABLE `productos`
 -- AUTO_INCREMENT de la tabla `productos_venta`
 --
 ALTER TABLE `productos_venta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `ropa`
@@ -239,13 +315,13 @@ ALTER TABLE `ropa`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
