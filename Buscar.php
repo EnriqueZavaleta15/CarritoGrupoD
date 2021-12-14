@@ -1,3 +1,12 @@
+ <?php
+  include("./php/conexion.php");  //conexion 
+if (!isset($_GET['texto'])){
+    header("Location: ./index.php");
+}
+ 
+ ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -33,8 +42,13 @@
 
             <div class="row">
               <div class="col-md-12 mb-5">
-                <div class="float-md-left mb-4"><h2 class="text-black h5">Shop All</h2></div>
+
+                <div class="float-md-left mb-4">
+                    <h2 class="text-black h5">Resultados encontrados para <?php echo $_GET['texto']?></h2>
+                </div>
+
                 <div class="d-flex">
+
                   <div class="dropdown mr-1 ml-md-auto">
                     <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Latest
@@ -67,9 +81,19 @@
                 // Codigo para mostros las imagenes -----------------------
 
 
-                include("./php/conexion.php");  //conexion 
+                $resultado=$conexion->query("select * from ropa where 
 
-                $resultado=$conexion->query("select * from ropa order by idRopa DESC limit 10") or die ($conexion->error);
+                    Nom_Ropa      like '%".$_GET['texto']."%' or
+                    Descrip_Rop   like '%".$_GET['texto']."%' or
+                    TallaRopa     like '%".$_GET['texto']."%' or
+                    ColorRopa     like '%".$_GET['texto']."%' or
+                    CategoriaRopa like '%".$_GET['texto']."%' 
+
+
+                order by idRopa DESC limit 10") or die ($conexion->error);
+                if(mysqli_num_rows($resultado)){
+
+                
                 while($fila=mysqli_fetch_array($resultado)) {
                   
               ?>
@@ -98,7 +122,12 @@
             
               
               
-              <?php } ?>
+            <?php } }else{
+
+                echo '<h2>Sin Resultados</h2>';
+                  }
+                  
+            ?>
 
               
 
